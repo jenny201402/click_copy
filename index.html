@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>点击复制功能</title>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="clipboard/clipboard.min.js"></script>
+    <script type="text/javascript" src="layer/layer.js"></script>
+    <style>
+        a:hover{
+            cursor:pointer;
+        }
+    </style>
+</head>
+<body>
+
+<a href="javascript:void(0);" class="btn_share" data-clipboard-text="http://baidu.com/">点击a标签实现分享</a>
+
+<div class="form-group" id="copydiv">
+    <p>第一段:aaaa</p>
+    <p>第二段:bbbb</p>
+    <p>第三段:cccc</p>
+    <p>第四段:dddd</p>
+</div>
+<button class="btn btn-mint" id="copybtn" data-clipboard-action="copy" data-clipboard-target="#copydiv">点击按钮复制</button>
+
+<br>
+<span id="copy_myself" data-clipboard-action="copy" data-clipboard-target="#copy_myself">点击复制我自己</span>
+
+</body>
+<script type="text/javascript">
+    $(document).ready(function(){
+        var clipboard = new Clipboard('.btn_share');
+        clipboard.on('success', function(e) {
+            parent.layer.msg("复制成功!", {
+                icon : 1,
+                time : 1500
+            })
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        var clipboard = new Clipboard('#copybtn');
+        clipboard.on('success', function(e) {
+            parent.layer.msg("复制成功!", {
+                icon : 1,
+                time : 1500
+            })
+        });
+        clipboard.on('error', function(e) {
+            parent.layer.msg("复制失败，请手动复制!", {
+                icon : 2,
+                time : 1500
+            })
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        var clipboard = new Clipboard('#copy_myself');
+        clipboard.on('success', function(e) {
+            parent.layer.msg("复制成功!", {
+                icon : 1,
+                time : 1500
+            })
+        });
+        clipboard.on('error', function(e) {
+            parent.layer.msg("复制失败，请手动复制!", {
+                icon : 2,
+                time : 1500
+            })
+        });
+    });
+</script>
+
+</html>
